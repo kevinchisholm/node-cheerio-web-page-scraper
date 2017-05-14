@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Cheerio | Web Page Scraping POC</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.jsonview.css">
+  </head>
+  <body>
+  <article>
+    <header>
+      <h1>Web Page Scraping with Node.js and Cheerio</h1>
+      <h2>Enter a URL below and then click "Scrape"</h2>
+    </header>
+    <section id="mainContent">
+      <label for="urlText"></label>
+      <input type="text" name="urlText" id="urlText">
+      <button id="submit">Scrape</button>
+      <div id="ajax-loader-container">
+        <img src="images/ajax-loader.gif" alt="">
+      </div>
+      <div id="data-container"></div>
+    </section>
+    <footer>
+    &copy; Copyright 2017 | Kevin Chisholm
+    </footer>
+  </article>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.jsonview.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
