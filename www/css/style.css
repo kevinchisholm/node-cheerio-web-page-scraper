@@ -53,6 +53,7 @@ footer{
 #urlText{
   padding: 10px;
   font-size: 24px;
+  width: 50%;
 }
 
 #submit{
