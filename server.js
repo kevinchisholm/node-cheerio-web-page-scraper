@@ -4,7 +4,8 @@ var express = require('express'),
     request = require('request'),
     cheerio = require('cheerio'),
     app = express(),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    env  = process.env;
 
 //support parsing of application/json type post data
 app.use(bodyParser.json());
@@ -15,36 +16,36 @@ app.use(bodyParser.urlencoded({extended: true}));
 //tell express that we want to use the www folder for our static assets
 app.use(express.static(path.join(__dirname, 'www')));
 
+app.get('/health', function (req, res) {
+    res.writeHead(200);
+    res.end();
+});
+
 app.post('/scrape', function(req, res){
     res.setHeader('Content-Type', 'application/json');
 
-    request(req.body.url, function(error, response, responseHtml){
+    //make a new request to the URL provided in the HTTP POST request
+    request(req.body.url, function (error, response, responseHtml) {
+        var resObj = {};
+
+        //if there was an error
+        if (error) {
+            res.end(JSON.stringify({error: 'There was an error of some kind'}));
+            return;
+        }
+
         //create the cheerio object
-        var resObj = {},
+        resObj = {},
+            //set a reference to the document that came back
             $ = cheerio.load(responseHtml),
             //create a reference to the meta elements
-            $title = $('head title').text();
-            $desc = $('meta[name="description"]').attr('content');
-            $kwd = $('meta[name="keywords"]').attr('content');
-            $ogTitle = $('meta[property="og:title"]').attr('content');
-            $ogImage = $('meta[property="og:image"]').attr('content');
-            $ogkeywords = $('meta[property="og:keywords"]').attr('content');
-
+            $title = $('head title').text(),
+            $desc = $('meta[name="description"]').attr('content'),
+            $kwd = $('meta[name="keywords"]').attr('content'),
+            $ogTitle = $('meta[property="og:title"]').attr('content'),
+            $ogImage = $('meta[property="og:image"]').attr('content'),
+            $ogkeywords = $('meta[property="og:keywords"]').attr('content'),
             $images = $('img');
-            
-            if ($ogImage && $ogImage.length){
-                console.log($ogImage);
-            }
-
-            if ($images && $images.length){
-                for (var i = 0; i < $images.length; i++) {
-                    console.log($images[i]);
-                }
-            }
-
-        
-        //create the HTTP header's Content-Type property
-        res.writeHead(200, {'Content-Type': 'text/html'});
 
         if ($title) {
             resObj.title = $title;
@@ -84,7 +85,7 @@ app.post('/scrape', function(req, res){
 });
 
 //listen for an HTTP request
-app.listen('8081');
+app.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost');
 
 //just so we know the server is running
-console.log('Navigate your brower to: http://localhost:8081');
+console.log('Navigate your brower to: http://localhost:3000');

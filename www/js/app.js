@@ -24,14 +24,20 @@
     };
 
     utils.bindScrapeButton = function () {
+        //when the submit button is clicked
         $('#submit').on('click', function () {
 
+            //if the text box is empty
             if (!$('#urlText').val() || $('#urlText').val() === ''){
+                //warn the user
                 $('#submit').text('Please enter a URL!');
+                $('#submit').addClass('error');
 
+                //re-set the button
                 setTimeout(function () {
-                    $('#submit').text('Scrape');
-                }, 1000);
+                    $('#submit').text('Scrape Page');
+                    $('#submit').removeClass('error');
+                }, 2000);
 
                 return;
             }
@@ -47,8 +53,7 @@
                     $('#ajax-loader-container').hide();
 
                     console.warn('HERE SUCCESS: ');
-                    console.dir(JSON.parse(jsonData));
-                    console.log(jsonData);
+                    console.dir(jsonData);
 
                     $('#data-container').JSONView(jsonData);
                 },
