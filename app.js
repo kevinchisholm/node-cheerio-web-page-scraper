@@ -16,11 +16,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 //tell express that we want to use the www folder for our static assets
 app.use(express.static(path.join(__dirname, 'www')));
 
-app.get('/health', function (req, res) {
-    res.writeHead(200);
-    res.end();
-});
-
 app.post('/scrape', function(req, res){
     res.setHeader('Content-Type', 'application/json');
 
