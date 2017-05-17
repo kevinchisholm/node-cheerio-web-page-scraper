@@ -32,9 +32,30 @@ article {
   background-color: #fff;
 }
 
+.logo{
+display: block;
+    width: 20%;
+    margin: 5px auto 15px;
+    padding: 2%;
+    background-color: #ededed;
+}
+
+header h1, header h2{
+  margin: 20px 0;
+}
+
+header h1{
+  font-size: 38px
+}
+
+header h2{
+  font-size: 24px
+}
+
+
 header{
   padding: 2%;
-  background-color: #D4AC0D;
+  background-color: #ACF3FD;
 }
 
 footer{
@@ -42,7 +63,7 @@ footer{
   width: 90%;
   padding: 2%;
   text-align: center;
-  background-color: #D4AC0D;
+  background-color: #ACF3FD;
 }
 
 #mainContent{
