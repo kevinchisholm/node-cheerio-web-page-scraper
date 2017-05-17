@@ -2,10 +2,10 @@
   "name"         : "node-cheerio-web-page-scraper",
   "version"      : "0.0.1",
   "description"  : "Provides metadata and image info for any web page as JSON",
-  "main"         : "server.js",
+  "main"         : "app.js",
   "author"       : "Kevin Chisholm",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "dependencies" : {
     "express"    : "latest",

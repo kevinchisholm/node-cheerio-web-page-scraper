@@ -32,12 +32,12 @@ npm install
 ### 1) Execute this command in your terminal:
 
 ```
-node server.js
+node app.js
 ```
 
 #### 2) Open the app in your browser:
 
 ```
-http://localhost:8081/
+http://localhost:3000
 ```
 #### 3) Enter a URL in the text box and then click: "Scrape"
